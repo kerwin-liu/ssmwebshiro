@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.Permission" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="parent_key" property="parentKey" jdbcType="VARCHAR" />
+    <result column="authority_key" property="authorityKey" jdbcType="VARCHAR" />
+    <result column="authority_type" property="authorityType" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="display" property="display" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_key, authority_key, authority_type, role, name, url, display, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from auth_permission
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from auth_permission
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.Permission" >
+    insert into auth_permission (id, parent_key, authority_key, 
+      authority_type, role, name, 
+      url, display, status)
+    values (#{id,jdbcType=CHAR}, #{parentKey,jdbcType=VARCHAR}, #{authorityKey,jdbcType=VARCHAR}, 
+      #{authorityType,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{display,jdbcType=BIT}, #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.Permission" >
+    insert into auth_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentKey != null" >
+        parent_key,
+      </if>
+      <if test="authorityKey != null" >
+        authority_key,
+      </if>
+      <if test="authorityType != null" >
+        authority_type,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="parentKey != null" >
+        #{parentKey,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityKey != null" >
+        #{authorityKey,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityType != null" >
+        #{authorityType,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kerwin.ssm.business.management.model.Permission" >
+    update auth_permission
+    <set >
+      <if test="parentKey != null" >
+        parent_key = #{parentKey,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityKey != null" >
+        authority_key = #{authorityKey,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityType != null" >
+        authority_type = #{authorityType,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.Permission" >
+    update auth_permission
+    set parent_key = #{parentKey,jdbcType=VARCHAR},
+      authority_key = #{authorityKey,jdbcType=VARCHAR},
+      authority_type = #{authorityType,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      display = #{display,jdbcType=BIT},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from auth_permission
+  </select>
+</mapper>

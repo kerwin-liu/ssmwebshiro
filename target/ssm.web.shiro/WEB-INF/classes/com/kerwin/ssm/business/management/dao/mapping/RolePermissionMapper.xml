@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.RolePermissionKey" >
+    <id column="role_id" property="roleId" jdbcType="CHAR" />
+    <id column="authority_id" property="authorityId" jdbcType="CHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.RolePermissionKey" >
+    delete from auth_role_permission
+    where role_id = #{roleId,jdbcType=CHAR}
+      and authority_id = #{authorityId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.RolePermissionKey" >
+    insert into auth_role_permission (role_id, authority_id)
+    values (#{roleId,jdbcType=CHAR}, #{authorityId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.RolePermissionKey" >
+    insert into auth_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="authorityId != null" >
+        authority_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="authorityId != null" >
+        #{authorityId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
