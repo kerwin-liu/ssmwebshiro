@@ -19,4 +19,6 @@ public interface ItemMapper {
     int updateByPrimaryKey(Item record);
 
     List<Item> selectPage(ItemQo itemQo);
+
+    List<Item> selectByItemQo(ItemQo itemQo);
 }

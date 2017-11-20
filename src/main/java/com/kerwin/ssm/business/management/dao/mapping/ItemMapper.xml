@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kerwin.ssm.business.management.dao.ItemMapper" >
-  <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.Item" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="item_no" property="itemNo" jdbcType="VARCHAR" />
-    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
-    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
-    <result column="rates" property="rates" jdbcType="VARCHAR" />
-    <result column="models" property="models" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="VARCHAR" />
-    <result column="warn_quantity" property="warnQuantity" jdbcType="DECIMAL" />
-    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
-    <result column="creat_id" property="creatId" jdbcType="VARCHAR" />
-    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
-    <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.ItemMapper">
+    <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.Item">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="item_no" property="itemNo" jdbcType="VARCHAR"/>
+        <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
+        <result column="unit_name" property="unitName" jdbcType="VARCHAR"/>
+        <result column="rates" property="rates" jdbcType="VARCHAR"/>
+        <result column="models" property="models" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="VARCHAR"/>
+        <result column="warn_quantity" property="warnQuantity" jdbcType="DECIMAL"/>
+        <result column="quantity" property="quantity" jdbcType="DECIMAL"/>
+        <result column="creat_id" property="creatId" jdbcType="VARCHAR"/>
+        <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP"/>
+        <result column="last_time" property="lastTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, item_no, item_name, unit_name, rates, models, price, warn_quantity, quantity, 
     creat_id, creat_time, last_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from items
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from items
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from items
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.Item" >
+    <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.Item">
     insert into items (id, item_no, item_name, 
       unit_name, rates, models, 
       price, warn_quantity, quantity, 
@@ -41,121 +41,121 @@
       #{creatId,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, #{lastTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.Item" >
-    insert into items
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="itemNo != null" >
-        item_no,
-      </if>
-      <if test="itemName != null" >
-        item_name,
-      </if>
-      <if test="unitName != null" >
-        unit_name,
-      </if>
-      <if test="rates != null" >
-        rates,
-      </if>
-      <if test="models != null" >
-        models,
-      </if>
-      <if test="price != null" >
-        price,
-      </if>
-      <if test="warnQuantity != null" >
-        warn_quantity,
-      </if>
-      <if test="quantity != null" >
-        quantity,
-      </if>
-      <if test="creatId != null" >
-        creat_id,
-      </if>
-        creat_time,
-      <if test="lastTime != null" >
-        last_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="itemNo != null" >
-        #{itemNo,jdbcType=VARCHAR},
-      </if>
-      <if test="itemName != null" >
-        #{itemName,jdbcType=VARCHAR},
-      </if>
-      <if test="unitName != null" >
-        #{unitName,jdbcType=VARCHAR},
-      </if>
-      <if test="rates != null" >
-        #{rates,jdbcType=VARCHAR},
-      </if>
-      <if test="models != null" >
-        #{models,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        #{price,jdbcType=VARCHAR},
-      </if>
-      <if test="warnQuantity != null" >
-        #{warnQuantity,jdbcType=DECIMAL},
-      </if>
-      <if test="quantity != null" >
-        #{quantity,jdbcType=DECIMAL},
-      </if>
-      <if test="creatId != null" >
-        #{creatId,jdbcType=VARCHAR},
-      </if>
-        now(),
-      <if test="lastTime != null" >
-        #{lastTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kerwin.ssm.business.management.model.Item" >
-    update items
-    <set >
-      <if test="itemNo != null" >
-        item_no = #{itemNo,jdbcType=VARCHAR},
-      </if>
-      <if test="itemName != null" >
-        item_name = #{itemName,jdbcType=VARCHAR},
-      </if>
-      <if test="unitName != null" >
-        unit_name = #{unitName,jdbcType=VARCHAR},
-      </if>
-      <if test="rates != null" >
-        rates = #{rates,jdbcType=VARCHAR},
-      </if>
-      <if test="models != null" >
-        models = #{models,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=VARCHAR},
-      </if>
-      <if test="warnQuantity != null" >
-        warn_quantity = #{warnQuantity,jdbcType=DECIMAL},
-      </if>
-      <if test="quantity != null" >
-        quantity = #{quantity,jdbcType=DECIMAL},
-      </if>
-      <if test="creatId != null" >
-        creat_id = #{creatId,jdbcType=VARCHAR},
-      </if>
-      <if test="creatTime != null" >
-        creat_time = #{creatTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastTime != null" >
-        last_time = #{lastTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.Item" >
+    <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.Item">
+        insert into items
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="itemNo != null">
+                item_no,
+            </if>
+            <if test="itemName != null">
+                item_name,
+            </if>
+            <if test="unitName != null">
+                unit_name,
+            </if>
+            <if test="rates != null">
+                rates,
+            </if>
+            <if test="models != null">
+                models,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="warnQuantity != null">
+                warn_quantity,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="creatId != null">
+                creat_id,
+            </if>
+            creat_time,
+            <if test="lastTime != null">
+                last_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="itemNo != null">
+                #{itemNo,jdbcType=VARCHAR},
+            </if>
+            <if test="itemName != null">
+                #{itemName,jdbcType=VARCHAR},
+            </if>
+            <if test="unitName != null">
+                #{unitName,jdbcType=VARCHAR},
+            </if>
+            <if test="rates != null">
+                #{rates,jdbcType=VARCHAR},
+            </if>
+            <if test="models != null">
+                #{models,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=VARCHAR},
+            </if>
+            <if test="warnQuantity != null">
+                #{warnQuantity,jdbcType=DECIMAL},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=DECIMAL},
+            </if>
+            <if test="creatId != null">
+                #{creatId,jdbcType=VARCHAR},
+            </if>
+            now(),
+            <if test="lastTime != null">
+                #{lastTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kerwin.ssm.business.management.model.Item">
+        update items
+        <set>
+            <if test="itemNo != null">
+                item_no = #{itemNo,jdbcType=VARCHAR},
+            </if>
+            <if test="itemName != null">
+                item_name = #{itemName,jdbcType=VARCHAR},
+            </if>
+            <if test="unitName != null">
+                unit_name = #{unitName,jdbcType=VARCHAR},
+            </if>
+            <if test="rates != null">
+                rates = #{rates,jdbcType=VARCHAR},
+            </if>
+            <if test="models != null">
+                models = #{models,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=VARCHAR},
+            </if>
+            <if test="warnQuantity != null">
+                warn_quantity = #{warnQuantity,jdbcType=DECIMAL},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=DECIMAL},
+            </if>
+            <if test="creatId != null">
+                creat_id = #{creatId,jdbcType=VARCHAR},
+            </if>
+            <if test="creatTime != null">
+                creat_time = #{creatTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastTime != null">
+                last_time = #{lastTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.Item">
     update items
     set item_no = #{itemNo,jdbcType=VARCHAR},
       item_name = #{itemName,jdbcType=VARCHAR},
@@ -170,10 +170,47 @@
       last_time = #{lastTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.kerwin.ssm.business.management.model.Qo.ItemQo">
-    select
-    <include refid="Base_Column_List"/>
-      from items
-      where item_no=#{itemNo}
-  </select>
+    <select id="selectPage" resultMap="BaseResultMap"
+            parameterType="com.kerwin.ssm.business.management.model.Qo.ItemQo">
+        select
+        <include refid="Base_Column_List"/>
+        from items
+        where item_no=#{itemNo}
+    </select>
+
+    <select id="selectByItemQo" resultMap="BaseResultMap"
+            parameterType="com.kerwin.ssm.business.management.model.Qo.ItemQo">
+        select
+        <include refid="Base_Column_List"/>
+        from items
+        WHERE
+        1=1
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="itemNo != null">
+            AND item_no = #{itemNo}
+        </if>
+        <if test="itemName != null">
+            AND item_name like concat('%',#{itemName},'%')
+        </if>
+        <if test="unitName != null">
+            AND unit_name = #{unitName}
+        </if>
+        <if test="rates != null">
+            AND rates = #{rates}
+        </if>
+        <if test="models != null">
+            AND models = #{models}
+        </if>
+        <if test="price != null">
+            AND price = #{price}
+        </if>
+        <if test="warnQuantity != null">
+            AND warn_quantity = #{warnQuantity}
+        </if>
+        <if test="quantity != null">
+            AND quantity = #{quantity}
+        </if>
+    </select>
 </mapper>

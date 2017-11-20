@@ -10,6 +10,7 @@ import com.kerwin.ssm.common.web.BaseController;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,8 +42,9 @@ public class ItemController extends BaseController {
     /**
      * 分页查询商品
      */
-    @PostMapping("getPages")
+    @GetMapping("getPages")
     public void getPages(HttpServletResponse response, ItemQo itemQo) {
         Pages<Item> itemPage = itemService.getPages(itemQo);
+        writeCommonDataResponse(response,"200","查询商品成功",itemPage);
     }
 }

@@ -141,5 +141,6 @@
     select
     <include refid="Base_Column_List"/>
     from auth_permission
+    where status=TRUE
   </select>
 </mapper>

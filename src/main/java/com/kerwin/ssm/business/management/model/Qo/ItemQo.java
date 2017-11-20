@@ -1,9 +1,11 @@
 package com.kerwin.ssm.business.management.model.Qo;
 
+import com.kerwin.ssm.common.web.BaseQuery;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ItemQo {
+public class ItemQo extends BaseQuery{
     private String id;
 
     private String itemNo;
