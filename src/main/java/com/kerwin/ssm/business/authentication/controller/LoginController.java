@@ -33,11 +33,8 @@ public class LoginController extends BaseController {
             subject.login(token);
         } catch (Exception e) {
             log.error("账号不存在或密码不正确");
-            try {
-                response.getWriter().write("");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            writeResponse(response, "302", "登录失败");
+            return;
         }
         writeResponse(response, "200", "登录成功");
     }
