@@ -185,31 +185,31 @@
         from items
         WHERE
         1=1
-        <if test="id != null">
+        <if test="id != null and id !=''">
             AND id = #{id}
         </if>
-        <if test="itemNo != null">
+        <if test="itemNo != null and itemNo!=''">
             AND item_no = #{itemNo}
         </if>
-        <if test="itemName != null">
+        <if test="itemName != null and itemName !=''">
             AND item_name like concat('%',#{itemName},'%')
         </if>
-        <if test="unitName != null">
+        <if test="unitName != null and unitName !=''">
             AND unit_name = #{unitName}
         </if>
-        <if test="rates != null">
+        <if test="rates != null and rates !=''">
             AND rates = #{rates}
         </if>
-        <if test="models != null">
+        <if test="models != null and models !=''">
             AND models = #{models}
         </if>
-        <if test="price != null">
+        <if test="price != null and price !=''">
             AND price = #{price}
         </if>
-        <if test="warnQuantity != null">
+        <if test="warnQuantity != null and warnQuantity !=''">
             AND warn_quantity = #{warnQuantity}
         </if>
-        <if test="quantity != null">
+        <if test="quantity != null and quantity !=''">
             AND quantity = #{quantity}
         </if>
     </select>
