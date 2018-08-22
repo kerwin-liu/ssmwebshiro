@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.InventoryMapper" >
+  <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.Inventory" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="item_id" property="itemId" jdbcType="VARCHAR" />
+    <result column="pdf_id" property="pdfId" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="tax_amount" property="taxAmount" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="price_tax" property="priceTax" jdbcType="DECIMAL" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="total_price_tax" property="totalPriceTax" jdbcType="DECIMAL" />
+    <result column="stock" property="stock" jdbcType="DECIMAL" />
+    <result column="produced_time" property="producedTime" jdbcType="TIMESTAMP" />
+    <result column="invoice_status" property="invoiceStatus" jdbcType="TINYINT" />
+    <result column="remain_tax_amount" property="remainTaxAmount" jdbcType="DECIMAL" />
+    <result column="remain_total_price" property="remainTotalPrice" jdbcType="DECIMAL" />
+    <result column="remain_total_price_tax" property="remainTotalPriceTax" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+    <result column="byzd1" property="byzd1" jdbcType="VARCHAR" />
+    <result column="byzd2" property="byzd2" jdbcType="VARCHAR" />
+    <result column="byzd3" property="byzd3" jdbcType="VARCHAR" />
+    <result column="byzd4" property="byzd4" jdbcType="VARCHAR" />
+    <result column="byzd5" property="byzd5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_id, pdf_id, quantity, tax_amount, price, price_tax, total_price, total_price_tax,
+    stock, produced_time, invoice_status, remain_tax_amount, remain_total_price, remain_total_price_tax,
+    remark, create_id, create_time, last_time, byzd1, byzd2, byzd3, byzd4, byzd5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from inventory
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from inventory
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.Inventory" >
+    insert into inventory (id, item_id, pdf_id,
+    quantity, tax_amount, price,
+    price_tax, total_price, total_price_tax,
+    stock, produced_time, invoice_status,
+    remain_tax_amount, remain_total_price, remain_total_price_tax,
+    remark, create_id, create_time,
+    last_time, byzd1, byzd2,
+    byzd3, byzd4, byzd5
+    )
+    values (#{id,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, #{pdfId,jdbcType=VARCHAR},
+    #{quantity,jdbcType=DECIMAL}, #{taxAmount,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL},
+    #{priceTax,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, #{totalPriceTax,jdbcType=DECIMAL},
+    #{stock,jdbcType=DECIMAL}, #{producedTime,jdbcType=TIMESTAMP}, #{invoiceStatus,jdbcType=TINYINT},
+    #{remainTaxAmount,jdbcType=DECIMAL}, #{remainTotalPrice,jdbcType=DECIMAL}, #{remainTotalPriceTax,jdbcType=DECIMAL},
+    #{remark,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{lastTime,jdbcType=TIMESTAMP}, #{byzd1,jdbcType=VARCHAR}, #{byzd2,jdbcType=VARCHAR},
+    #{byzd3,jdbcType=VARCHAR}, #{byzd4,jdbcType=VARCHAR}, #{byzd5,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.Inventory" >
+    insert into inventory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="pdfId != null" >
+        pdf_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="taxAmount != null" >
+        tax_amount,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="priceTax != null" >
+        price_tax,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="totalPriceTax != null" >
+        total_price_tax,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="producedTime != null" >
+        produced_time,
+      </if>
+      <if test="invoiceStatus != null" >
+        invoice_status,
+      </if>
+      <if test="remainTaxAmount != null" >
+        remain_tax_amount,
+      </if>
+      <if test="remainTotalPrice != null" >
+        remain_total_price,
+      </if>
+      <if test="remainTotalPriceTax != null" >
+        remain_total_price_tax,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+      <if test="byzd1 != null" >
+        byzd1,
+      </if>
+      <if test="byzd2 != null" >
+        byzd2,
+      </if>
+      <if test="byzd3 != null" >
+        byzd3,
+      </if>
+      <if test="byzd4 != null" >
+        byzd4,
+      </if>
+      <if test="byzd5 != null" >
+        byzd5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdfId != null" >
+        #{pdfId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="taxAmount != null" >
+        #{taxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="priceTax != null" >
+        #{priceTax,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPriceTax != null" >
+        #{totalPriceTax,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=DECIMAL},
+      </if>
+      <if test="producedTime != null" >
+        #{producedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceStatus != null" >
+        #{invoiceStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remainTaxAmount != null" >
+        #{remainTaxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remainTotalPrice != null" >
+        #{remainTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remainTotalPriceTax != null" >
+        #{remainTotalPriceTax,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="byzd1 != null" >
+        #{byzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd2 != null" >
+        #{byzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd3 != null" >
+        #{byzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd4 != null" >
+        #{byzd4,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd5 != null" >
+        #{byzd5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kerwin.ssm.business.management.model.Inventory" >
+    update inventory
+    <set >
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdfId != null" >
+        pdf_id = #{pdfId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="taxAmount != null" >
+        tax_amount = #{taxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="priceTax != null" >
+        price_tax = #{priceTax,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPriceTax != null" >
+        total_price_tax = #{totalPriceTax,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=DECIMAL},
+      </if>
+      <if test="producedTime != null" >
+        produced_time = #{producedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceStatus != null" >
+        invoice_status = #{invoiceStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remainTaxAmount != null" >
+        remain_tax_amount = #{remainTaxAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remainTotalPrice != null" >
+        remain_total_price = #{remainTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remainTotalPriceTax != null" >
+        remain_total_price_tax = #{remainTotalPriceTax,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastTime != null" >
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="byzd1 != null" >
+        byzd1 = #{byzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd2 != null" >
+        byzd2 = #{byzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd3 != null" >
+        byzd3 = #{byzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd4 != null" >
+        byzd4 = #{byzd4,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd5 != null" >
+        byzd5 = #{byzd5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.Inventory" >
+    update inventory
+    set item_id = #{itemId,jdbcType=VARCHAR},
+      pdf_id = #{pdfId,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      tax_amount = #{taxAmount,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      price_tax = #{priceTax,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      total_price_tax = #{totalPriceTax,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=DECIMAL},
+      produced_time = #{producedTime,jdbcType=TIMESTAMP},
+      invoice_status = #{invoiceStatus,jdbcType=TINYINT},
+      remain_tax_amount = #{remainTaxAmount,jdbcType=DECIMAL},
+      remain_total_price = #{remainTotalPrice,jdbcType=DECIMAL},
+      remain_total_price_tax = #{remainTotalPriceTax,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      byzd1 = #{byzd1,jdbcType=VARCHAR},
+      byzd2 = #{byzd2,jdbcType=VARCHAR},
+      byzd3 = #{byzd3,jdbcType=VARCHAR},
+      byzd4 = #{byzd4,jdbcType=VARCHAR},
+      byzd5 = #{byzd5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getPages" resultType="com.kerwin.ssm.business.management.model.Vo.InventoryVo"
+          parameterType="com.kerwin.ssm.business.management.model.Qo.InventoryPageQo">
+    SELECT
+    i.id id,
+    it.item_name itemName,
+    i.quantity  quantity,
+    i.stock stock,
+    i.create_time createTime,
+    i.produced_time producedTime,
+    it.models models,
+    it.unit_name unitName,
+    it.rates rates,
+    i.price price,
+    i.price_tax priceTax,
+    i.tax_amount taxAmount,
+    i.total_price totalPrice,
+    i.total_price_tax totalPriceTax,
+    i.remain_tax_amount remainTaxAmount,
+    i.remain_total_price remainTotalPrice,
+    i.remain_total_price_tax remainTotalPriceTax,
+    au.employee_name userName,
+    it.warn_quantity warnQuantity
+    FROM inventory i
+    LEFT JOIN items it ON i.item_id = it.id
+    LEFT JOIN auth_user au ON au.id = i.create_id
+    WHERE 1=1
+    <if test="itemId !=null and itemId !=''">
+      AND it.id = #{itemId}
+    </if>
+    <if test="itemName !=null and itemName !=''">
+      AND it.item_name like concat('%',#{itemName},'%')
+    </if>
+    <if test="userName !=null and userName !=''">
+      AND au.employee_name like concat('%',#{userName},'%')
+    </if>
+    <if test="startTime !=null and startTime !=''">
+      AND i.create_time > STR_TO_DATE(#{startTime},'%Y-%m-%d %H:%i:%s')
+    </if>
+    <if test="endTime !=null and endTime !=''">
+      AND  STR_TO_DATE(#{endTime},'%Y-%m-%d %H:%i:%s') > i.create_time
+    </if>
+    ORDER BY i.create_time DESC
+  </select>
+  <select id="getOne"  resultType="com.kerwin.ssm.business.management.model.Vo.InventoryVo"
+          parameterType="java.lang.String">
+     SELECT
+    i.id id,
+    it.item_name itemName,
+    i.quantity  quantity,
+    i.stock stock,
+    i.create_time createTime,
+    it.models models,
+    it.unit_name unitName,
+    it.rates rates,
+    i.price price,
+    i.price_tax priceTax,
+    i.tax_amount taxAmount,
+    i.total_price totalPrice,
+    i.total_price_tax totalPriceTax,
+    i.remain_tax_amount remainTaxAmount,
+    i.remain_total_price remainTotalPrice,
+    i.remain_total_price_tax remainTotalPriceTax,
+    au.employee_name userName
+    FROM inventory i
+    LEFT JOIN items it ON i.item_id = it.id
+    LEFT JOIN auth_user au ON au.id = i.create_id
+    WHERE i.id = #{id}
+  </select>
+</mapper>

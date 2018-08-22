@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 配置邮箱服务地址,账号,密码 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="protocol" value="smtp"/>
+        <property name="host" value="${mail.host}"/>
+        <property name="port" value="${mail.port}"/>
+        <property name="username" value="${mail.username}"/>
+        <property name="password" value="${mail.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 邮箱service -->
+    <bean id="emailSendService" class="com.kerwin.ssm.common.EmailUtil">
+        <property name="fromAddress" value="${mail.fromAddress}"/>
+        <property name="subject" value="日报"></property>
+    </bean>
+    <!-- 定时任务集成-->
+    <bean id="myJob" class="com.kerwin.ssm.common.MyJob"></bean>
+
+    <!-- 任务触发器详细信息bean -->
+    <bean id="emailJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="myJob"></property>
+        <property name="targetMethod" value="emailTask"></property>
+        <property name="concurrent" value="false" /><!-- 作业不并发调度  -->
+    </bean>
+    <!-- 定义trigger 触发器 -->
+    <bean id="emailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="emailJobDetail"></property>
+        <property name="cronExpression" value="${task.myJob.cron}"></property>
+    </bean>
+    <!-- 设置触发器调度工厂 -->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="emailTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.ClientMapper" >
+  <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.Client" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="c_name" property="cName" jdbcType="VARCHAR" />
+    <result column="c_sex" property="cSex" jdbcType="VARCHAR" />
+    <result column="c_phone" property="cPhone" jdbcType="VARCHAR" />
+    <result column="c_address" property="cAddress" jdbcType="VARCHAR" />
+    <result column="c_wx" property="cWx" jdbcType="VARCHAR" />
+    <result column="c_qq" property="cQq" jdbcType="VARCHAR" />
+    <result column="c_level" property="cLevel" jdbcType="VARCHAR" />
+    <result column="c_remark" property="cRemark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_name, c_sex, c_phone, c_address, c_wx, c_qq, c_level, c_remark, create_time, 
+    create_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from client
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from client
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.Client" >
+    insert into client (id, c_name, c_sex, 
+      c_phone, c_address, c_wx, 
+      c_qq, c_level, c_remark, 
+      create_time, create_user_id)
+    values (#{id,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{cSex,jdbcType=VARCHAR}, 
+      #{cPhone,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR}, #{cWx,jdbcType=VARCHAR}, 
+      #{cQq,jdbcType=VARCHAR}, #{cLevel,jdbcType=VARCHAR}, #{cRemark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.Client" >
+    insert into client
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cName != null" >
+        c_name,
+      </if>
+      <if test="cSex != null" >
+        c_sex,
+      </if>
+      <if test="cPhone != null" >
+        c_phone,
+      </if>
+      <if test="cAddress != null" >
+        c_address,
+      </if>
+      <if test="cWx != null" >
+        c_wx,
+      </if>
+      <if test="cQq != null" >
+        c_qq,
+      </if>
+      <if test="cLevel != null" >
+        c_level,
+      </if>
+      <if test="cRemark != null" >
+        c_remark,
+      </if>
+        create_time,
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cSex != null" >
+        #{cSex,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhone != null" >
+        #{cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cAddress != null" >
+        #{cAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cWx != null" >
+        #{cWx,jdbcType=VARCHAR},
+      </if>
+      <if test="cQq != null" >
+        #{cQq,jdbcType=VARCHAR},
+      </if>
+      <if test="cLevel != null" >
+        #{cLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cRemark != null" >
+        #{cRemark,jdbcType=VARCHAR},
+      </if>
+        now(),
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kerwin.ssm.business.management.model.Client" >
+    update client
+    <set >
+      <if test="cName != null" >
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cSex != null" >
+        c_sex = #{cSex,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhone != null" >
+        c_phone = #{cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cAddress != null" >
+        c_address = #{cAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cWx != null" >
+        c_wx = #{cWx,jdbcType=VARCHAR},
+      </if>
+      <if test="cQq != null" >
+        c_qq = #{cQq,jdbcType=VARCHAR},
+      </if>
+      <if test="cLevel != null" >
+        c_level = #{cLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cRemark != null" >
+        c_remark = #{cRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.Client" >
+    update client
+    set c_name = #{cName,jdbcType=VARCHAR},
+      c_sex = #{cSex,jdbcType=VARCHAR},
+      c_phone = #{cPhone,jdbcType=VARCHAR},
+      c_address = #{cAddress,jdbcType=VARCHAR},
+      c_wx = #{cWx,jdbcType=VARCHAR},
+      c_qq = #{cQq,jdbcType=VARCHAR},
+      c_level = #{cLevel,jdbcType=VARCHAR},
+      c_remark = #{cRemark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getClientPage" resultType="com.kerwin.ssm.business.management.model.Vo.ClientPageVo"
+  parameterType="com.kerwin.ssm.business.management.model.Qo.ClientPageQo">
+    SELECT
+    id id ,
+    c_name cName,
+    CASE c_sex
+    when '1' THEN '男'
+    WHEN '0' THEN '女'
+    ELSE '未知' END cSex ,
+    c_phone cPhone,
+    c_address cAddress,
+    c_wx cWx,
+    c_qq cQq,
+    CASE c_level
+    WHEN '1' THEN '初级'
+    WHEN '2' THEN '中级'
+    WHEN '3' THEN '高级'
+    else '未知' END cLevel,
+    c_remark cRemark,
+    date_format(create_time ,'%Y-%c-%d') createTime
+    FROM client
+    WHERE 1=1
+    <if test="cName != null and cName != ''">
+      AND c_name LIKE concat('%',#{cName},'%')
+    </if>
+    <if test="cPhone != null and cPhone != ''">
+      AND c_phone LIKE concat('%',#{cPhone},'%')
+    </if>
+    <if test="cLevel != null and cLevel != ''">
+      AND c_level = #{cLevel}
+    </if>
+    ORDER BY create_time DESC
+  </select>
+  <select id="getAddress" resultType="com.kerwin.ssm.business.management.model.Vo.ClientAddressesVo"
+    parameterType="java.lang.String">
+    select
+    t.id id,
+    t.address address
+    from client_address t
+    where t.client_id = #{id}
+  </select>
+</mapper>

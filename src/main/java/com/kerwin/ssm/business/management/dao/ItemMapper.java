@@ -21,4 +21,9 @@ public interface ItemMapper {
     List<Item> selectPage(ItemQo itemQo);
 
     List<Item> selectByItemQo(ItemQo itemQo);
+
+    void updateQuantityById(Item item);
+
+    List<Item> getAlert();
+
 }

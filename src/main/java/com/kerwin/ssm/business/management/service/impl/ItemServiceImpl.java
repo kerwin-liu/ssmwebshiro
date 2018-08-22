@@ -10,14 +10,10 @@ import com.kerwin.ssm.business.management.model.Vo.ItemVo;
 import com.kerwin.ssm.business.management.service.ItemService;
 import com.kerwin.ssm.common.IDUtils;
 import com.kerwin.ssm.common.Pages;
-import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.security.sasl.SaslServer;
-import javax.xml.registry.infomodel.User;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +28,7 @@ public class ItemServiceImpl implements ItemService {
     public boolean save(Item item, AuthUser authUser) {
         //设置主键id 添加人 id 姓名 时间，现有库存初始化
         item.setId(IDUtils.getId());
-        item.setCreatId("111");
+        item.setCreateId("111");
         item.setQuantity(new BigDecimal(0));
         ItemQo itemQo = new ItemQo();
         itemQo.setItemNo(item.getItemNo());
@@ -47,7 +43,7 @@ public class ItemServiceImpl implements ItemService {
         PageHelper.startPage(itemQo.getPageIndex(), itemQo.getPageSize());
         List<Item> itemList = itemMapper.selectByItemQo(itemQo);
         Page<Item> page = (Page<Item>) itemList;
-        return new Pages<Item>(page.getStartRow(), page.getTotal(), page.getPageSize(), itemList);
+        return new Pages<>(page.getStartRow(), page.getTotal(), page.getPageSize(), itemList);
     }
 
     public boolean deleteById(String id) {

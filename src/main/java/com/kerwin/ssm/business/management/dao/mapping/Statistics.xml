@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.StatisticsMapper">
+    <select id="getStatisticsDatil" resultType="com.kerwin.ssm.business.management.model.Vo.StatisticsVo"
+            parameterType="com.kerwin.ssm.business.management.model.Qo.StatisticsQo">
+    select t.* from (
+        SELECT
+            i.id ,
+            it.item_name itemName,
+            it.item_no itemNo,
+            it.models models,
+            i.stock stock,
+            i.produced_time producedTime,
+            IFNULL((SELECT SUM(il.quantity) FROM inventory_log il WHERE il.inventory_id = i.id AND il.status ='0' and il.create_time >=#{startTimeD} and #{endTimeD} > il.create_time),'0') inventoryOut,
+            IFNULL((SELECT SUM(il2.quantity) FROM inventory_log il2 WHERE il2.inventory_id = i.id AND il2.status ='1' and il2.create_time >=#{startTimeD} and #{endTimeD} > il2.create_time),'0') inventoryReturn,
+            IFNULL((SELECT SUM(il3.quantity) FROM inventory_log il3 WHERE il3.inventory_id = i.id AND il3.status ='2' and il3.create_time >=#{startTimeD} and #{endTimeD} > il3.create_time),'0') inventoryIn,
+            IFNULL((SELECT SUM(il4.quantity) FROM inventory_log il4 WHERE il4.inventory_id = i.id  and il4.create_time >=#{startTimeD} and #{endTimeD} > il4.create_time),'0') inventoryAll
+            FROM inventory i
+            LEFT JOIN items it ON i.item_id = it.id
+            GROUP BY i.id ) t
+            where t.stock != 0 or t.inventoryAll != 0
+</select>
+    <select id="getStatisticsByClient" resultType="com.kerwin.ssm.business.management.model.Vo.StatisticsByClientVo"
+         parameterType="com.kerwin.ssm.business.management.model.Qo.StatisticsQo">
+            SELECT 
+            c.c_name cName,
+            c.c_phone cPhone,
+            c.c_level cLevel,
+            it.item_name itemName,
+            il.quantity,
+            it.models,
+            il.status,
+            il.create_time createTime,
+            il.transport_company transportCompany,
+            il.transport_no transportNo
+            FROM client c 
+            LEFT JOIN inventory_log il ON c.id= il.client_id
+            LEFT JOIN inventory i ON i.id = il.inventory_id
+            LEFT JOIN items it ON it.id= i.item_id
+            WHERE  il.create_time >=#{startTimeD} and #{endTimeD} > il.create_time and it.item_name is not null
+    </select>
+</mapper>

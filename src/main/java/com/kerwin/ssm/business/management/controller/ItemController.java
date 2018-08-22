@@ -1,8 +1,8 @@
 package com.kerwin.ssm.business.management.controller;
 
-import com.github.pagehelper.Page;
 import com.kerwin.ssm.business.management.model.AuthUser;
 import com.kerwin.ssm.business.management.model.Item;
+import com.kerwin.ssm.business.management.model.Qo.ClientAddressAddQo;
 import com.kerwin.ssm.business.management.model.Qo.ItemQo;
 import com.kerwin.ssm.business.management.model.Vo.ItemVo;
 import com.kerwin.ssm.business.management.service.ItemService;
@@ -11,7 +11,10 @@ import com.kerwin.ssm.common.web.BaseController;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -32,6 +35,10 @@ public class ItemController extends BaseController {
     @PostMapping("save")
     public void save(HttpServletResponse response, Item item) {
         AuthUser authUser = (AuthUser) SecurityUtils.getSubject().getPrincipal();
+        if(null == authUser){
+            writeResponse(response,"302","登录超时");
+            return;
+        }
         boolean save = itemService.save(item, authUser);
         if (save) {
             writeResponse(response, "200", "商品添加成功");

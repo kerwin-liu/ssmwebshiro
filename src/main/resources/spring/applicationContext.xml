@@ -7,7 +7,7 @@
      	http://www.springframework.org/schema/context
      	http://www.springframework.org/schema/context/spring-context.xsd">
 	<!--引入配置属性文件 -->
-	<context:property-placeholder location="classpath:config/jdbc.properties" />
+	<context:property-placeholder location="classpath:config/*.properties" />
 	<!--自动扫描含有@Service、@Repository、@Component将其注入为Bean -->
 	<context:component-scan base-package="com.kerwin">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -16,5 +16,6 @@
 	<!-- 配置spring -->
 	<import resource="classpath*:spring/applicationContext-shiro.xml" />
 	<import resource="classpath*:spring/applicationContext-jdbc.xml"/>
+	<import resource="classpath*:spring/applicationContext-email.xml"/>
 
 </beans>

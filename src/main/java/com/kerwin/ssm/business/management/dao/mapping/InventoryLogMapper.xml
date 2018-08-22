@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerwin.ssm.business.management.dao.InventoryLogMapper" >
+  <resultMap id="BaseResultMap" type="com.kerwin.ssm.business.management.model.InventoryLog" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="inventory_id" property="inventoryId" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="inventory_log_id" property="inventoryLogId" jdbcType="VARCHAR" />
+    <result column="cause" property="cause" jdbcType="VARCHAR" />
+    <result column="create_id" property="createId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="client_address" property="clientAddress" jdbcType="VARCHAR" />
+    <result column="client_phone" property="clientPhone" jdbcType="VARCHAR" />
+    <result column="transport_company" property="transportCompany" jdbcType="VARCHAR" />
+    <result column="transport_no" property="transportNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, client_id, orderNo, inventory_id, quantity, status, inventory_log_id, cause, create_id,
+    create_time, remark, client_address, client_phone, transport_company, transport_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from inventory_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from inventory_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.kerwin.ssm.business.management.model.InventoryLog" >
+    insert into inventory_log (id, client_id, orderNo,
+    inventory_id, quantity, status,
+    inventory_log_id, cause, create_id,
+    create_time, remark, client_address,
+    client_phone, transport_company, transport_no
+    )
+    values (#{id,jdbcType=VARCHAR}, #{clientId,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR},
+    #{inventoryId,jdbcType=VARCHAR}, #{quantity,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR},
+    #{inventoryLogId,jdbcType=VARCHAR}, #{cause,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{clientAddress,jdbcType=VARCHAR},
+    #{clientPhone,jdbcType=VARCHAR}, #{transportCompany,jdbcType=VARCHAR}, #{transportNo,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kerwin.ssm.business.management.model.InventoryLog" >
+    insert into inventory_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="inventoryLogId != null" >
+        inventory_log_id,
+      </if>
+      <if test="cause != null" >
+        cause,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="clientAddress != null" >
+        client_address,
+      </if>
+      <if test="clientPhone != null" >
+        client_phone,
+      </if>
+      <if test="transportCompany != null" >
+        transport_company,
+      </if>
+      <if test="transportNo != null" >
+        transport_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryId != null" >
+        #{inventoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="inventoryLogId != null" >
+        #{inventoryLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null" >
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="clientAddress != null" >
+        #{clientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="clientPhone != null" >
+        #{clientPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="transportCompany != null" >
+        #{transportCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="transportNo != null" >
+        #{transportNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kerwin.ssm.business.management.model.InventoryLog" >
+    update inventory_log
+    <set >
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id = #{inventoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryLogId != null" >
+        inventory_log_id = #{inventoryLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null" >
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="clientAddress != null" >
+        client_address = #{clientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="clientPhone != null" >
+        client_phone = #{clientPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="transportCompany != null" >
+        transport_company = #{transportCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="transportNo != null" >
+        transport_no = #{transportNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kerwin.ssm.business.management.model.InventoryLog" >
+    update inventory_log
+    set client_id = #{clientId,jdbcType=VARCHAR},
+      orderNo = #{orderno,jdbcType=VARCHAR},
+      inventory_id = #{inventoryId,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      inventory_log_id = #{inventoryLogId,jdbcType=VARCHAR},
+      cause = #{cause,jdbcType=VARCHAR},
+      create_id = #{createId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      client_address = #{clientAddress,jdbcType=VARCHAR},
+      client_phone = #{clientPhone,jdbcType=VARCHAR},
+      transport_company = #{transportCompany,jdbcType=VARCHAR},
+      transport_no = #{transportNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getPages" resultType="com.kerwin.ssm.business.management.model.Vo.InventoryLogPageVo"
+          parameterType="com.kerwin.ssm.business.management.model.Qo.InventoryLogPageQo">
+    SELECT
+    il.id id,
+    it.item_no itemNo,
+    it.item_name itemName,
+    it.unit_name unitName,
+    c.c_name cName,
+    il.client_address cAddress,
+    il.quantity quantity,
+    DATE_FORMAT(il.create_time,"%Y-%m-%d %H:%i:%s") createTime,
+    il.remark remark,
+    il.client_phone phone,
+    il.transport_company transport,
+    il.transport_no transportNo,
+    CASE il.status
+    when '0' THEN '出库'
+    when '1' THEN '退货'
+    else '入库' end status
+    FROM inventory_log il
+    LEFT JOIN client c ON il.client_id = c.id
+    LEFT JOIN inventory i ON il.inventory_id = i.id
+    LEFT JOIN items it ON i.item_id = it.id
+    WHERE 1=1
+    <if test="itemName != null and itemName != ''">
+      AND it.item_name LIKE concat('%',#{itemName},'%')
+    </if>
+    <if test="clientName != null and clientName != ''">
+      AND c.c_name LIKE concat('%',#{clientName},'%')
+    </if>
+    <if test="address != null and address != ''">
+      AND c.c_address LIKE concat('%',#{address},'%')
+    </if>
+    <if test="phone != null and phone != ''">
+      AND c.c_phone LIKE concat('%',#{phone},'%')
+    </if>
+    <if test="startTime != null and startTime != ''">
+      AND il.create_time >= STR_TO_DATE(#{startTime},'%Y-%m-%d %H:%i:%s')
+    </if>
+    <if test="endTime != null and endTime != ''">
+      AND STR_TO_DATE(#{endTime},'%Y-%m-%d %H:%i:%s') > il.create_time
+    </if>
+    <if test="status != null and status != ''">
+      AND il.status = #{status}
+    </if>
+    ORDER BY il.create_time DESC
+  </select>
+  <select id="getOne" resultType="com.kerwin.ssm.business.management.model.Vo.InventoryLogPageVo"
+          parameterType="java.lang.String">
+    SELECT
+    il.id id,
+    it.item_no itemNo,
+    it.item_name itemName,
+    it.unit_name unitName,
+    c.c_name cName,
+    c.c_address cAddress,
+    il.quantity quantity,
+    DATE_FORMAT(il.create_time,"%Y-%m-%d %H:%i:%s") createTime,
+    il.remark remark,
+    c.c_phone phone,
+    CASE il.status
+    when '0' THEN '出库'
+    when '1' THEN '退货'
+    else '入库' end status
+    FROM inventory_log il
+    LEFT JOIN client c ON il.client_id = c.id
+    LEFT JOIN inventory i ON il.inventory_id = i.id
+    LEFT JOIN items it ON i.item_id = it.id
+    WHERE il.id = #{id}
+  </select>
+  <select id="getList" resultType="com.kerwin.ssm.business.management.model.Vo.InventoryLogPageVo"
+          parameterType="java.lang.String">
+   SELECT
+    il.id id,
+    it.item_no itemNo,
+    it.item_name itemName,
+    it.unit_name unitName,
+    c.c_name cName,
+    il.client_address cAddress,
+    il.quantity quantity,
+    DATE_FORMAT(il.create_time,"%Y-%m-%d %H:%i:%s") createTime,
+    il.remark remark,
+    il.client_phone phone,
+    il.transport_company transport,
+    il.transport_no transportNo,
+    CASE il.status
+    when '0' THEN '出库'
+    when '1' THEN '退货'
+    else '入库' end status
+    FROM inventory_log il
+    LEFT JOIN client c ON il.client_id = c.id
+    LEFT JOIN inventory i ON il.inventory_id = i.id
+    LEFT JOIN items it ON i.item_id = it.id
+    WHERE il.inventory_id = #{id}
+  </select>
+
+  <update id="updateInventoryQuantity" parameterType="com.kerwin.ssm.business.management.model.InventoryLog">
+    update Inventory t
+    set t.stock = t.stock + #{quantity}
+    where t.id = #{inventoryId}
+  </update>
+  <update id="updateItemQuantity" parameterType="com.kerwin.ssm.business.management.model.InventoryLog">
+    update items t
+    set t.quantity =t.quantity + #{quantity}
+    where t.id = (select i.item_id from inventory i where i.id = #{inventoryId})
+  </update>
+</mapper>

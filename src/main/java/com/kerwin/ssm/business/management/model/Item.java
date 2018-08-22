@@ -22,9 +22,9 @@ public class Item {
 
     private BigDecimal quantity;
 
-    private String creatId;
+    private String createId;
 
-    private Date creatTime;
+    private Date createTime;
 
     private Date lastTime;
 
@@ -100,20 +100,20 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public String getCreatId() {
-        return creatId;
+    public String getCreateId() {
+        return createId;
     }
 
-    public void setCreatId(String creatId) {
-        this.creatId = creatId == null ? null : creatId.trim();
+    public void setCreateId(String createId) {
+        this.createId = createId == null ? null : createId.trim();
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getLastTime() {
